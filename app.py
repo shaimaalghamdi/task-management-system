@@ -1,11 +1,11 @@
+
 from flask import Flask, render_template, request, redirect, flash
 import sqlite3
 from datetime import date
+import os
 
 app = Flask(__name__)
-app.secret_key = "task-management-secret-key"
-
-
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 def get_db_connection():
     connection = sqlite3.connect("database.db")
     connection.row_factory = sqlite3.Row
